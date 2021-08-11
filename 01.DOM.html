@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="root" style="border: 1px solid red">
+        <p>Parágrafo criado em HTML.</p>
+    </div>
+    
+    <script>
+        // metaprogramação 
+        // 1) CAPTURAR a div "root" em uma constante
+        const root = document.getElementById ('root')
+        // Criando um novo parágrafo
+        const novoParag = document.createElement ('p')
+        // Colocar o conteúdo no parágrafo
+        novoParag.textContent = 'Parágrafo criado com JS'
+        // Colocando o novo parágrafo dentro da div "root"
+        root.appendChild (novoParag)
+
+        // Criando uma div nova
+        // Para colocar no body não precisa ser capturado
+        const novaDiv = document.createElement ('div')
+        // Ajustando propriedade da div
+        novaDiv.textContent ='Div criada em JS'
+        novaDiv.style.border ='3px dotted green'
+        novaDiv.style.backgroundColor ='limegreen'
+        novaDiv.id ='minhaDiv'
+        // Colocando a nova div diramente no body do documento
+        document.body.appendChild(novaDiv) 
+    </script>
+
+</body>
+</html>
