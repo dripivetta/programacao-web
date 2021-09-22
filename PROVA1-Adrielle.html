@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Programação Web 2021/2 &bull; PROVA 1</title>
+  <style>
+        * {
+            font-family: Calibri, Arial, sans-serif;
+        }
+        body {
+            background: maroon;
+            background: linear-gradient(0deg, maroon 0%, coral 100%);
+            height: 100vh;
+            
+        }
+        main {
+            margin: 5%;
+            background-color: white;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 5px 5px rgba(250, 250, 250, 0.2);
+        }
+        h1 {
+            color: maroon;
+            text-shadow: 2px 2px rgba(0, 100, 0, 0.2);
+            text-align: center;
+
+        }
+        .input-set, .result {
+            margin: 15px auto;
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+        }
+        .input-set label {
+            display: block;
+            color: maroon
+        }
+        .result {
+            background-color: maroon;
+            color: white;
+            border-radius: 12px;
+        }
+        </style>
+</head>
+
+<body>
+    <main>
+        <h1>Cálculo do Índice de Massa Corporal (IMC)</h1>
+
+        <div id="root">
+            
+        </div>
+    </main>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    /**********************************************************************************
+    1. Crie três componentes funcionais a partir do código HTML contido dentro da
+       div "root", mais acima. Não se esqueça de adaptar o nome dos atributos HTML para
+       atributos JSX, quando for o caso. Em seguida, apague o conteúdo da div "root", 
+       deixando-o vazio.
+    **********************************************************************************/
+
+    const Componente1 = ({oninputChange}) => {
+
+        return (
+            <div className="input-set">
+                   <label htmlFor="peso">Peso</label>
+                   <input id="nome" type="number"/>
+            </div>
+        )
+    }
+    // usando uma função criei o componente número 1 onde o usuário irá inserir no campo Peso, o seu peso
+
+   const Componente2 = ({oninputChange}) => {
+
+        return (
+            <div className="input-set">
+                   <label htmlFor="altura">Altura</label>
+                   <input id="altura" type="number"/>
+            </div>
+        )
+    }
+    // usando uma função criei o componente número 2 onde o usuário irá inserir no campo Altura, a sua altura
+
+   const Componente3 = ({peso, altura}) => {
+
+        return (
+            <div className="result">
+                   <div>Peso</div>
+                   <div>Faixa:</div>
+            </div>
+           
+        ) 
+    }
+    // usando uma função criei um componente número 3 onde irá ser apresentado o cálculo do IMC do usuário
+
+     /**********************************************************************************
+    2. Declare as variáveis de estado que julgar necessárias.
+    **********************************************************************************/
+    const [peso, setPeso] = React.useState ('') // criei uma variável de estado para receber o peso
+    const [altura, setAltura] = React.useState ('') // criei uma variável de estado para receber a altura
+    const [imc, setImc] = React.useState ('') // criei uma variável de estado para mostrar o IMC
+
+    function Imc() { // uma função que calcula o IMC
+        React.useEffect (() => { // usando o useEffect
+            imc = peso / (altura**2) // calculo do IMC
+            if (imc <18,50){
+                setImc ('Peso baixo') // apresentação das faixas do IMC
+            }
+            else if (imc >=18,50 && imc<=24,90 ){
+                setImc ('Peso normal')
+            }
+            else if (imc >=25 && imc <=29) {
+                setImc ('Sobrepeso')
+            }
+            else if (imc >=30 && imc<=34,90){
+                setImc ('Obesidade (Grau I')
+            }
+            else if (imc >=35 && imc <=39){
+                setImc ('Obesidade Severa (Grau II')
+            }
+            else {
+                setImc ('Obesidade Mórbida (Grau III')
+            }
+
+            oninputChange = event =>{ // função que capitura o valor inserido pelo usuário
+                setPeso(event.target.value) // capitura o peso que o usuário inseriu
+                setAltura(event.target.value) // capitura a altura que o usuário inseriu
+                
+            }
+            setImc(imc) // retorna i IMC para o usuário 
+        })
+    /**********************************************************************************
+    3. Escreva o código do useEffect(), contemplando os passos seguintes:
+
+    - Calcule o IMC, dividindo o peso pela altura elevada ao quadrado
+    - Determine a faixa de IMC:
+        - Menor que 18,5 -> Peso baixo
+        - Entre 18,5 e 24,9 -> Peso normal
+        - Entre 25 e 29,9 -> Sobrepeso
+        - Entre 30 e 34,9 -> Obesidade (Grau I)
+        - Entre 35 e 39,9 -> Obesidade Severa (Grau II)
+        - Maior ou igual a 40 -> Obesidade Mórbida (Grau III)
+    - Atualize as variáveis de estado apropriadas. Eles devems ser usadas dentro do
+        terceiro componente, para exibir o resultado
+    - NÃO SE ESQUEÇA DAS DEPENDÊNCIAS DO useEffect()!!!
+    **********************************************************************************/
+
+    /**********************************************************************************
+     4. Faça com que mudanças nos inputs dos dois primeiros componentes atualizem
+        as respectivas variáveis de estado.       
+    **********************************************************************************/ 
+
+    /**********************************************************************************
+     5. Comente os principais trechos do seu código.       
+    **********************************************************************************/
+
+      return (
+        <>
+          
+          {Componente1} {/*Mostra o componente 1 para reendeinzar na tela*/}
+          {Componente2} {/*Mostra o componente 2 para reendeinzar na tela*/}
+          {Componente3} {/*Mostra o componente 3 para reendeinzar na tela*/}
+
+        </>
+      )
+    }
+
+    ReactDOM.render(<Imc />, document.getElementById('root'))
+
+  </script>
+
+</body>
+
+</html>
